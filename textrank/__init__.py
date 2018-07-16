@@ -13,6 +13,7 @@ import itertools
 import networkx as nx
 import nltk
 import os
+import matplotlib.pyplot as plt
 
 
 def setup_environment():
@@ -72,6 +73,12 @@ def build_graph(nodes):
     return gr
 
 
+def displayGraph(graph):
+    nx.draw(graph)
+    plt.savefig("figure.png")
+    return
+
+
 def extract_key_phrases(text):
     """Return a set of key phrases.
 
@@ -94,6 +101,7 @@ def extract_key_phrases(text):
     # keyphrases with two words
 
     graph = build_graph(word_set_list)
+    displayGraph(graph)
 
     # pageRank - initial value of 1.0, error tolerance of 0,0001,
     calculated_page_rank = nx.pagerank(graph, weight='weight')
